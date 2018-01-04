@@ -68,22 +68,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Background
     void searchAsync() {
-        try {
-            ResponseEntity<JSONObject> responseEntity = githubClient.getResult("angular");
-            switch (responseEntity.getStatusCode()){
-                case OK:
-                    Toast.makeText(context, responseEntity.getBody().toString(), Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
-            }
-
-        } catch (RestClientException e) {
-            Log.e("Rest error", e.toString());
-        } catch (Exception e){
-            Log.e("EXCEPTION", e.getMessage());
+        ResponseEntity<JSONObject> responseEntity = githubClient.getResult("angular");
+        switch (responseEntity.getStatusCode()) {
+            case OK:
+                Toast.makeText(context, responseEntity.getBody().toString(), Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
